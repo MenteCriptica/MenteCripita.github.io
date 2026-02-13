@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body style="background:black;color:white;
+display:flex;justify-content:center;
+align-items:center;height:100vh;
+font-family:monospace;flex-direction:column;">
+
+<div id="t">05:00</div>
+
+<script>
+let s = 300; // segundos
+
+function tick() {
+  let m = Math.floor(s / 60);
+  let sec = (s % 60).toString().padStart(2,'0');
+  t.innerText = m + ":" + sec;
+
+  if (s-- <= 0) {
+    let a = document.createElement("a");
+    a.href = "https://seulink.com";
+    a.innerText = "Continue";
+    a.style.color = "white";
+    document.body.appendChild(a);
+    return;
+  }
+  setTimeout(tick, 1000);
+}
+tick();
+</script>
+
+</body>
+</html>
 
