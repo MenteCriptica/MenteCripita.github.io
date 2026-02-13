@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
-<body style="background:black;color:white;
-display:flex;justify-content:center;
-align-items:center;height:100vh;
-font-family:monospace;flex-direction:column;">
+<head>
+<meta charset="UTF-8">
+<title>Timer</title>
+</head>
 
-<div id="t">05:00</div>
+<body style="background:black; color:white; text-align:center; margin-top:20%;">
+
+<div id="timer"></div>
 
 <script>
-let s = 300; // segundos
+const dataFinal = new Date(2026, 1, 20, 0, 0, 0).getTime();
 
-function tick() {
-  let m = Math.floor(s / 60);
-  let sec = (s % 60).toString().padStart(2,'0');
-  t.innerText = m + ":" + sec;
+function atualizarTimer() {
+    const agora = new Date().getTime();
+    const diferenca = dataFinal - agora;
 
-  if (s-- <= 0) {
-    let a = document.createElement("a");
-    a.href = "https://seulink.com";
-    a.innerText = "Continue";
-    a.style.color = "white";
-    document.body.appendChild(a);
-    return;
-  }
-  setTimeout(tick, 1000);
+    if (diferenca <= 0) {
+        document.getElementById("timer").innerHTML = "o inicio chegara";
+        return;
+    }
+
+    const segundos = Math.floor(diferenca / 1000);
+    document.getElementById("timer").innerHTML = segundos;
 }
-tick();
+
+setInterval(atualizarTimer, 1000);
 </script>
 
 </body>
